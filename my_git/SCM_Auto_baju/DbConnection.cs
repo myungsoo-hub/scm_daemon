@@ -6,7 +6,6 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.IO;
 
-
 namespace SCM_Auto_baju
 {
     class DbConnection
