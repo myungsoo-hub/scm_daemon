@@ -1,0 +1,49 @@
+09:49:54 : [AUTO stock] - ppmidx=[12580] / storeno=[8000006085] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[12580] / storeno=[8000006086] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[12580] / storeno=[8000006111] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[21692] / storeno=[8000006111] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[24379] / storeno=[8000006111] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[12580] / storeno=[8000006118] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[12580] / storeno=[8000006120] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[14533] / storeno=[8000006120] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[21692] / storeno=[8000006120] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[24379] / storeno=[8000006120] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[11269] / storeno=[8000006133] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[12580] / storeno=[8000006133] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[18794] / storeno=[8000006133] / orderdate =[2017-01-04]
+09:49:54 : [AUTO stock] - ppmidx=[21692] / storeno=[8000006133] / orderdate =[2017-01-04]
+09:51:05 : [AUTO stock] - ppmidx=[12580] / storeno=[8000006085] / orderdate =[2017-01-04]
+09:54:06 : [AUTO stock] - ppmidx=[21679] / storeno=[8000006021] / orderdate =[2017-01-04]
+09:54:07 : [AUTO stock] - ppmidx=[22286] / storeno=[8000006064] / orderdate =[2017-01-04]
+09:54:15 : [AUTO stock] - ppmidx=[22288] / storeno=[8000006064] / orderdate =[2017-01-04]
+09:54:17 : [AUTO stock] - ppmidx=[22440] / storeno=[8000006064] / orderdate =[2017-01-04]
+09:54:42 : [AUTO stock] - ppmidx=[22816] / storeno=[8000006064] / orderdate =[2017-01-04]
+10:08:53 : [MySql_124]:Closed
+10:08:53 : [MySql_164]:Closed
+10:08:53 : [MySql_18]:Closed
+14:31:34 : PPM 정가판매 데이터 생성 시작
+14:31:40 : PPM 정가판매 데이터  생성 완료
+14:32:15 : PPM 정가판매 데이터 생성 시작
+14:34:55 : PPM 정가판매 데이터  생성 완료
+14:35:34 : PPM 정가판매 데이터 생성 시작
+14:37:35 : PPM 정가판매 데이터  생성 완료
+14:38:32 : PPM 정가판매 데이터 생성 시작
+14:41:26 : PPM 정가판매 데이터  생성 완료
+14:42:05 : PPM 정가판매 데이터 생성 시작
+14:44:39 : PPM 정가판매 데이터  생성 완료
+14:44:56 : PPM 정가판매 데이터 생성 시작
+14:47:45 : PPM 정가판매 데이터  생성 완료
+14:48:26 : PPM 정가판매 데이터 생성 시작
+14:50:55 : PPM 정가판매 데이터  생성 완료
+14:51:20 : PPM 정가판매 데이터 생성 시작
+14:53:40 : PPM 정가판매 데이터  생성 완료
+14:53:55 : PPM 정가판매 데이터 생성 시작
+14:56:11 : PPM 정가판매 데이터  생성 완료
+14:56:39 : PPM 정가판매 데이터 생성 시작
+14:58:51 : PPM 정가판매 데이터  생성 완료
+14:59:14 : PPM 정가판매 데이터 생성 시작
+15:01:43 : PPM 정가판매 데이터  생성 완료
+15:01:56 : PPM 정가판매 데이터 생성 시작
+15:03:55 : PPM 정가판매 데이터  생성 완료
+15:04:10 : PPM 정가판매 데이터 생성 시작
+15:06:48 : PPM 정가판매 데이터  생성 완료

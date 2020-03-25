@@ -1,0 +1,60 @@
+09:30:00 : [MsSql]:Open
+09:32:25 : [MsSql]:Open
+09:32:25 : [1차 정가 판매 표준 편차 완료]
+09:32:25 : [MsSql]:Open
+09:32:25 : [2단계 정가판매수량 특이값 제외 수량 preset_safe_stdevp_total]:열 이름 'except_2'이(가) 잘못되었습니다.
+09:32:25 : [MsSql]:Open
+09:32:25 : [3-1차 2차  판매 표준 편차 pos_store_stock]:열 이름 'except_2'이(가) 잘못되었습니다.
+09:32:25 : [MsSql]:Open
+09:32:25 : [3-2차 요일별 판매 표준 편차 pos_product_date]:열 이름 'except_2'이(가) 잘못되었습니다.
+09:32:25 : [MsSql]:Open
+09:32:26 : [전월 ABC누적 백업]오류:열 이름 'sum_share'이(가) 잘못되었습니다.
+제공된 값의 개수나 열 이름이 테이블 정의와 일치하지 않습니다.
+09:32:26 : [MsSql]:Open
+09:32:26 : [매월1일 ABC 누적 데이터 생성 에러 ]:열 이름 'sum_share'이(가) 잘못되었습니다.
+09:32:26 : 매월1일 ABC 누적 데이터 생성 쿼리: insert into preset_scm_stock_share (storeno, ppmidx, total_jungga, share, sum_share,grade) select  right(a.storeno,4) as storeno, a.ppmidx,       sum(a.qty_jungga)as qty_jungga,    round(sum(a.qty_jungga)/convert(float,c.jungga_total)*100,2) as avg_jungga,     round(sum(sum(a.qty_jungga)/convert(float,c.jungga_total)*100) over(order by sum(a.qty_jungga) desc),1) as running         , case        when round(sum(sum(a.qty_jungga)/convert(float,c.jungga_total)*100) over(order by sum(a.qty_jungga) desc),1) < 80 then 'A'      when round(sum(sum(a.qty_jungga)/convert(float,c.jungga_total)*100) over(order by sum(a.qty_jungga) desc),1) > 80 and round(sum(sum(a.qty_jungga)/convert(float,c.jungga_total)*100) over(order by sum(a.qty_jungga) desc),1) < 90 then 'B'      when round(sum(sum(a.qty_jungga)/convert(float,c.jungga_total)*100) over(order by sum(a.qty_jungga) desc),1) >= 90 then 'C'      else ''     end 	  from 	 ( 		    select storeno ,  sum(qty_jungga) as jungga_total 		    from preset_sale_ppm_daily_year   		    where  storeno ='8000003001' and (orderdate >='2018-12-01' and orderdate <='2018-12-31')  		    group by storeno 	  ) as c 	     left join  	 (            select storeno, ppmidx, sum(qty_jungga)as qty_jungga           from  preset_sale_ppm_daily_year  		      where  storeno ='8000003001' and (orderdate >='2018-12-01' and orderdate <='2018-12-31')            group by storeno, ppmidx    ) as a on a.storeno = c.storeno  group by a.storeno, a.ppmidx,c.jungga_total 
+09:32:26 : [MsSql]:Open
+09:32:26 : [2단계 정가판매수량 특이값 제외 수량 preset_safe_stdevp_total]:열 이름 'stdevp_3'이(가) 잘못되었습니다.
+열 이름 'avg_jungga_3'이(가) 잘못되었습니다.
+열 이름 'avg_jungga_3'이(가) 잘못되었습니다.
+열 이름 'stdevp_3'이(가) 잘못되었습니다.
+09:32:26 : [MsSql]:Open
+09:41:42 : [MsSql]:Open
+09:42:25 : [MsSql]:Open
+10:05:27 : [MsSql]:Open
+10:07:39 : [MsSql]:Open
+10:08:05 : [MsSql]:Open
+10:11:42 : [MsSql]:Open
+10:11:57 : [정가 판매 표준 편차 pos_store_stock]:startIndex는 문자열의 길이보다 클 수 없습니다.
+매개 변수 이름: startIndex
+10:14:20 : [MsSql]:Open
+12:37:29 : [정가 판매 표준 편차]:'∞' 근처의 구문이 잘못되었습니다.
+'∞' 근처의 구문이 잘못되었습니다.
+12:37:29 : 정가 표준 편차쿼리:IF EXISTS (SELECT * FROM preset_safe_stdevp_total WITH (NOLOCK) WHERE storeno = '6994' AND ppmidx ='26433' ) BEGIN      UPDATE preset_safe_stdevp_total      SET stdevp_1 =  ∞     , avg_jungga_1 =∞,regdate = getdate()        WHERE storeno = '6994' AND ppmidx ='26433'  END ELSE BEGIN     insert into preset_safe_stdevp_total       (storeno,ppmidx,stdevp_1,avg_jungga_1)       values ('6994' ,'26433' ,∞,∞)  END
+12:37:37 : [1차 정가 판매 표준 편차 완료]
+12:37:37 : [MsSql]:Open
+12:37:40 : [2차 정가판매수량 특이값 제외 완료]
+12:37:40 : [MsSql]:Open
+14:44:58 : [3-1차  2차  판매 표준 편차 완료]
+14:44:58 : [MsSql]:Open
+14:45:00 : [3-2차 요일별 판매 표준 편차 pos_product_date]:열 이름 'Y'이(가) 잘못되었습니다.
+14:45:00 : [MsSql]:Open
+14:45:00 : [MsSql]:Open
+14:45:04 : 매월1일 ABC 누적 데이터 생성 완료
+14:45:04 : [MsSql]:Open
+14:45:08 : [2차 정가판매수량 특이값 제외 완료]
+14:45:08 : [MsSql]:Open
+14:49:12 : [MsSql]:Open
+20:23:33 : [3-2차 요일별 판매 표준 편차 완료]
+20:23:33 : [MsSql]:Open
+20:23:33 : [MsSql]:Open
+20:23:37 : 매월1일 ABC 누적 데이터 생성 완료
+20:23:37 : [MsSql]:Open
+20:23:41 : [2차 정가판매수량 특이값 제외 완료]
+20:23:41 : [MsSql]:Open
+20:33:31 : [MsSql]:Open
+20:33:31 : [MsSql]:Open
+20:34:01 : 매월1일 ABC 누적 데이터 생성 완료
+20:34:01 : [MsSql]:Open
+20:34:05 : [2차 정가판매수량 특이값 제외 완료]
+20:34:05 : [MsSql]:Open

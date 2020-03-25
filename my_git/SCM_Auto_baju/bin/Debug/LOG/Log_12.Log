@@ -1,0 +1,55 @@
+09:41:02 : MySql.Data.MySqlClient.MySqlException (0x80004005): Access denied for user 'kowm'@'121.67.133.131' (using password: YES)
+   위치: MySql.Data.MySqlClient.MySqlStream.ReadPacket()
+   위치: MySql.Data.MySqlClient.NativeDriver.AuthenticateNew()
+   위치: MySql.Data.MySqlClient.NativeDriver.Authenticate()
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: SCM_Auto_baju.DbConnection_My.MygetRemoteDbConnection(String str) 파일 D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\DbConnection_My.cs:줄 37
+09:41:07 : [대상물품추출2_v3(fn_get_preset_data)]오류:Access denied for user 'kowm'@'121.67.133.131' (using password: YES)
+09:42:06 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+15:29:40 : [그룹물품추출1_v3(fn_get_preset_group_data)]오류:연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"에서 열 정보를 가져올 수 없습니다.
+연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"이(가) 메시지 "[MySQL][ODBC 3.51 Driver][mysqld-5.6.32-log]SELECT command denied to user 'pos'@'192.168.1.201' for table 'vw_alternativegroups'"을(를) 반환했습니다.
+15:29:40 : [그룹물품추출_v3(fn_get_preset_group_data)]완료
+15:37:32 : [그룹물품추출1_v3(fn_get_preset_group_data)]오류:연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"에서 열 정보를 가져올 수 없습니다.
+연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"이(가) 메시지 "[MySQL][ODBC 3.51 Driver][mysqld-5.6.32-log]SELECT command denied to user 'pos'@'192.168.1.201' for table 'vw_alternativegroups'"을(를) 반환했습니다.
+15:37:32 : [그룹물품추출_v3(fn_get_preset_group_data)]완료
+15:38:26 : [STEP2.판매예측값생성(fn_set_preset_sale_data)]: 0건 생성완료
+15:39:24 : [그룹물품추출1_v3(fn_get_preset_group_data)]오류:연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"에서 열 정보를 가져올 수 없습니다.
+연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"이(가) 메시지 "[MySQL][ODBC 3.51 Driver][mysqld-5.6.32-log]SELECT command denied to user 'pos'@'192.168.1.201' for table 'vw_alternativegroups'"을(를) 반환했습니다.
+15:39:24 : [그룹물품추출_v3(fn_get_preset_group_data)]완료
+15:42:18 : [STEP2.판매예측값생성(fn_set_preset_sale_data)]: 0건 생성완료
+15:47:01 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+15:49:45 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+15:50:33 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+15:50:35 : [시뮬레이션]오류:PRIMARY KEY 제약 조건 'PK_preset_sale_data_1'을(를) 위반했습니다. 개체 'dbo.preset_sale_data'에 중복 키를 삽입할 수 없습니다. 중복 키 값은 (2019-07-30, 6223, 25971)입니다.
+문이 종료되었습니다.
+15:50:35 : [그룹물품추출1_v3(fn_get_preset_group_data)]오류:연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"에서 열 정보를 가져올 수 없습니다.
+연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"이(가) 메시지 "[MySQL][ODBC 3.51 Driver][mysqld-5.6.32-log]SELECT command denied to user 'pos'@'192.168.1.201' for table 'vw_alternativegroups'"을(를) 반환했습니다.
+15:50:35 : [그룹물품추출_v3(fn_get_preset_group_data)]완료
+15:50:36 : [STEP2.판매예측값생성(fn_set_preset_sale_data)]: 0건 생성완료
+15:51:45 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+15:51:46 : [시뮬레이션]오류:PRIMARY KEY 제약 조건 'PK_preset_sale_data_1'을(를) 위반했습니다. 개체 'dbo.preset_sale_data'에 중복 키를 삽입할 수 없습니다. 중복 키 값은 (2019-07-30, 6223, 25971)입니다.
+문이 종료되었습니다.
+15:51:47 : [그룹물품추출1_v3(fn_get_preset_group_data)]오류:연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"에서 열 정보를 가져올 수 없습니다.
+연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"이(가) 메시지 "[MySQL][ODBC 3.51 Driver][mysqld-5.6.32-log]SELECT command denied to user 'pos'@'192.168.1.201' for table 'vw_alternativegroups'"을(를) 반환했습니다.
+15:51:47 : [그룹물품추출_v3(fn_get_preset_group_data)]완료
+15:51:48 : [판매예측값생성3_v3(fn_set_preset_sale_data)]:PRIMARY KEY 제약 조건 'PK_preset_sale_data_v2_1'을(를) 위반했습니다. 개체 'dbo.preset_sale_data_v2'에 중복 키를 삽입할 수 없습니다. 중복 키 값은 (2019-07-30, 6223, 1102)입니다.
+문이 종료되었습니다.
+15:54:40 : [시뮬레이션]오류:PRIMARY KEY 제약 조건 'PK_preset_sale_data_1'을(를) 위반했습니다. 개체 'dbo.preset_sale_data'에 중복 키를 삽입할 수 없습니다. 중복 키 값은 (2019-07-30, 6223, 25971)입니다.
+문이 종료되었습니다.
+16:13:13 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+17:43:49 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+17:43:52 : [그룹물품추출1_v3(fn_get_preset_group_data)]오류:연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"에서 열 정보를 가져올 수 없습니다.
+연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"이(가) 메시지 "[MySQL][ODBC 3.51 Driver][mysqld-5.6.32-log]SELECT command denied to user 'pos'@'192.168.1.201' for table 'vw_alternativegroups'"을(를) 반환했습니다.
+17:43:52 : [그룹물품추출_v3(fn_get_preset_group_data)]완료
+17:43:53 : [STEP2.판매예측값생성(fn_set_preset_sale_data)]: 0건 생성완료
+17:51:08 : [대상물품추출2_v3(fn_get_preset_data)]오류:execute command denied to user 'pos'@'192.168.1.122' for routine 'coopbase.usp_scm001_20180427'
+17:51:45 : [그룹물품추출1_v3(fn_get_preset_group_data)]오류:연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"에서 열 정보를 가져올 수 없습니다.
+연결된 서버 "LINK_COOPBASE"의 OLE DB 공급자 "MSDASQL"이(가) 메시지 "[MySQL][ODBC 3.51 Driver][mysqld-5.6.32-log]SELECT command denied to user 'pos'@'192.168.1.201' for table 'vw_alternativegroups'"을(를) 반환했습니다.
+17:51:45 : [그룹물품추출_v3(fn_get_preset_group_data)]완료
+17:52:03 : [STEP2.판매예측값생성(fn_set_preset_sale_data)]: 0건 생성완료

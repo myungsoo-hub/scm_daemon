@@ -1,0 +1,550 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data.SqlClient;
+using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using System.Threading;
+using System.Windows.Forms;
+
+namespace SCM_Auto_baju
+{
+    class scm_stock_preset
+    {
+        SqlConnection myConnection = new SqlConnection();
+        SqlConnection myConnection_201 = new SqlConnection();
+        MySqlConnection MYconn = new MySqlConnection();
+        public void fn_scmstock(string orderdate1, string orderdate2, Form1 frm1)
+        {
+
+            fn_get_stock_preset(orderdate1, orderdate2, frm1); //SCM 기초자료 생성
+            //fn_get_stock_preset_jungga(orderdate1, orderdate2, frm1); //정가판매량 업데이트
+           //fn_get_stock_preset_panmae(orderdate1, orderdate2, frm1); //판매예측값 업데이트
+            //fn_get_stock_preset_stock(orderdate1, orderdate2, frm1); //재고 업데이트
+           
+        }
+
+   
+        private void fn_get_stock_preset(string orderdate1, string orderdate2, Form1 frm1)
+        {
+
+            myConnection = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("213");
+            
+            int i;
+
+    
+            string queryString1 = "";
+            string queryString3 = "";
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            SqlDataAdapter adapter1 = new SqlDataAdapter();
+
+            frm1.sendSms("NEWPOS_SCM 자료 생성 시작(" + String.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now.AddDays(0).ToString()) + ")");
+
+
+          
+                //step1. 바코등 등록 및 수정 대상물품 조회
+                string queryString = "SELECT top 1000 t1.storeno as storeno, t1.sdate,  t1.m_code as m_code, t1.product_code, t4.storeSubject as storeSubject,  t1.ppmidx,t3.subject, t1.reg_gb,"
+                                    + "  (case when (t1.product_code <> '') THEN '물품' ELSE '그룹' END) as group_yn,  isnull(gg.group_cd,'') as group_cd,isnull( gg.group_nm,'') as group_nm,       t1.scm_gb,   "
+                                    + " 	 (case when ( t1.stock_only_ab = 'A') THEN 'Y' when ( t1.stock_only_ab = 'B') THEN 'N' ELSE '' END) as  stock_only_ab, "
+                                    + " 	 (case when ( t1.scm_susik = 'D') THEN '기본' when ( t1.scm_susik = 'B') THEN '묶음' ELSE '' END) as  scm_susik"
+                                    + "	, t1.amt_bundle, t5.subject3 as pdbsubject ,t5.idx as pdbidx , t7.subject as pcgsubject ,t7.idx as pcgidx,t6.subject as pcmsubject,t6.idx as pcmidx"
+                                    + "	,group_susik,amt_balju_pre,amt_balju,amt_sale_d3,amt_sale_d2,amt_sale_d1,amt_sale_d"
+                                    + "	  ,amt_pda_d3,amt_pda_d2,amt_pda_d1,amt_safe_d,amt_safe_max,amt_magam,amt_input_d3,amt_input_d2,amt_input_d1"
+                                    + "	  ,amt_adjust1,amt_adjust2,amt_adjust3,amt_adjust4,amt_adjust5,amt_adjust6,amt_adjust7"
+                                    + "	 FROM webdb_se.dbo.stock_preset4_2019 as t1 with (nolock) "
+                                    + "LEFT OUTER JOIN pos_product_master as t3 with (nolock) ON t1.ppmidx = t3.idx"
+                                    + "	 LEFT OUTER JOIN pos_erp_goods_group as gg with (nolock) On t1.ppmidx = gg.product_ppmidx "
+                                    + "	 LEFT OUTER JOIN pos_db_BrandClass as t5 with (nolock) On t5.idx = t3.pdbidx "
+                                    + "	 LEFT OUTER JOIN pos_category_master as t6 with (nolock) On t6.idx = t3.pcmidx "
+                                    + "	 LEFT OUTER JOIN pos_category_group as t7 with (nolock) on t7.idx = t6.pcgidx"
+                                    + "	  INNER JOIN pos_store as t4 ON t1.storeno=right(t4.storeno,4) and t4.vc_businessStatus='1' "
+                                    + "	  WHERE (t1.sdate >=  '" + orderdate1 + "' and t1.sdate <=  '" + orderdate2 + "' )AND t1.vc = '1' "
+                                    + "	  group by  t1.sdate,t1.storeno , t1.m_code , t4.storeSubject ,  t1.product_code, t3.subject, t1.reg_gb,t1.product_code,"
+                                    + "	   t1.scm_gb, t1.stock_only_ab, t1.scm_susik, t1.amt_bundle, t5.subject3  ,t5.idx , t7.subject  ,t7.idx,t6.subject,t6.idx,"
+                                    + "	  gg.group_cd, gg.group_nm,t1.ppmidx,group_susik,amt_balju_pre,amt_balju,amt_sale_d3,amt_sale_d2,amt_sale_d1,amt_sale_d"
+                                    + ",amt_pda_d3,amt_pda_d2,amt_pda_d1,amt_safe_d,amt_safe_max,amt_magam,amt_input_d3,amt_input_d2,amt_input_d1"
+                                    + "	  ,amt_adjust1,amt_adjust2,amt_adjust3,amt_adjust4,amt_adjust5,amt_adjust6,amt_adjust7"
+                + "	  UNION ALL  "
+                + " SELECT  distinct t1.storeno as storeno, t1.sdate,   t1.m_code as m_code, ''  as  product_code,  t4.storeSubject as storeSubject,   ''  as ppmidx, ''  as subject, t1.reg_gb,  "
+                    + "	  (case when (''='') THEN '그룹' ELSE '물품' END) as group_yn, gg.group_cd, gg.group_nm, "
+                + " (case when (group_ab = 'A') then 'Y' else 'N' END) as scm_gb,"
+                    + " (case when ( t1.stock_only_ab = 'A') THEN 'Y' when ( t1.stock_only_ab = 'B') THEN 'N' ELSE '' END) as  stock_only_ab,  "
+                + "	    ''  as scm_susik,  ''  as amt_bundle,t5.subject3 as pdbsubject ,t5.idx as pdbidx , t7.subject as pcgsubject ,t7.idx as pcgidx,t6.subject as pcmsubject,t6.idx as pcmidx, "
+                    + "	  ''  as  group_susik,amt_balju_pre,amt_balju,amt_sale_d3,amt_sale_d2,amt_sale_d1,amt_sale_d "
+                + " ,amt_pda_d3,amt_pda_d2,amt_pda_d1,amt_safe_d, 0 as amt_safe_max,amt_magam,amt_input_d3,amt_input_d2,amt_input_d1 "
+                    + "  ,amt_adjust1,amt_adjust2,0 as  amt_adjust3,amt_adjust4,0 as  amt_adjust5,amt_adjust6,amt_adjust7 "
+                + "	   FROM stock_preset4_group as t1  "
+                    + "LEFT OUTER JOIN pos_erp_goods_group as gg On t1.group_cd = gg.group_cd  "
+                + "   LEFT OUTER JOIN pos_product_master as t3 with (nolock) ON t3.icoop_code = gg.product_cd  "
+                    + "   LEFT OUTER JOIN pos_db_BrandClass as t5 with (nolock) On t5.idx = t3.pdbidx  "
+                + "   LEFT OUTER JOIN pos_category_master as t6 with (nolock) On t6.idx = t3.pcmidx "
+                    + "   LEFT OUTER JOIN pos_category_group as t7 with (nolock) on t7.idx = t6.pcgidx  "
+                + "   INNER JOIN pos_store as t4 ON t1.storeno=right(t4.storeno,4) and t4.vc_businessStatus='1'  "
+                    + "WHERE (t1.sdate >=  '" + orderdate1 + "'  and t1.sdate <=  '" + orderdate2 + "' ) "
+                + "     group by t1.storeno ,t1.sdate, t1.m_code , t4.storeSubject ,   t3.subject, t1.reg_gb, "
+                    + "   t1.stock_only_ab,  t5.subject3  ,t5.idx , t7.subject  ,t7.idx,t6.subject,t6.idx,group_ab,gg.group_cd, gg.group_nm "
+                + "	,amt_balju_pre,amt_balju,amt_sale_d3,amt_sale_d2,amt_sale_d1,amt_sale_d "
+                    + "  ,amt_pda_d3,amt_pda_d2,amt_pda_d1,amt_safe_d,amt_magam,amt_input_d3,amt_input_d2,amt_input_d1 "
+                + ",amt_adjust1,amt_adjust2,amt_adjust4,amt_adjust6,amt_adjust7 ";
+            //+ "ORDER BY t1.storeno, group_cd desc, product_code"
+            //   + " offset(" + i + " - 1) * 40000 rows"
+            //    + " Fetch next 40000 rows only";
+
+            //+ "	  ORDER BY t1.storeno, group_cd desc, product_code ";
+
+            //AND CONVERT(Varchar(10),a.regdate,120) = CONVERT(Varchar(10),getdate(),120)";
+
+            adapter.SelectCommand = new SqlCommand(queryString, myConnection);
+            adapter.SelectCommand.CommandTimeout = 0;
+            SqlCommand command = new SqlCommand(queryString, myConnection);
+
+     
+            try
+            {
+
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                DataTable table = ds.Tables[0];
+                DataRowCollection rows = table.Rows;
+
+                string storeno = "";
+                string sdate = "";
+                string m_code = "";
+                string product_code = "";
+                string storeSubject = "";
+                string ppmidx = "";
+                string subject = "";
+                string reg_gb = "";
+                string group_yn = "";
+                string group_cd = "";
+                string group_nm = "";
+                string scm_gb = ""; ;
+
+                string stock_only_ab = "";
+                string scm_susik = "";
+                int amt_bundle = 0;
+                string pdbsubject = "";
+                int pdbidx = 0;
+                string pcgsubject = "";
+                int pcgidx = 0;
+                string pcmsubject = "";
+                int pcmidx = 0;
+                string group_susik = "";
+
+                int amt_balju_pre = 0;
+                int amt_balju = 0;
+
+                int amt_sale_d3 = 0;
+                int amt_sale_d2 = 0;
+                int amt_sale_d1 = 0;
+                int amt_sale_d = 0;
+
+                int amt_pda_d3 = 0;
+                int amt_pda_d2 = 0;
+                int amt_pda_d1 = 0;
+
+                int amt_safe_d = 0;
+                int amt_safe_max = 0;
+
+                int amt_magam = 0;
+
+                int amt_input_d3 = 0;
+                int amt_input_d2 = 0;
+                int amt_input_d1 = 0;
+
+                int amt_adjust1 = 0;
+                int amt_adjust2 = 0;
+                int amt_adjust3 = 0;
+                int amt_adjust4 = 0;
+                int amt_adjust5 = 0;
+                int amt_adjust6 = 0;
+                int amt_adjust7 = 0;
+
+                myConnection.Dispose();
+                myConnection.Close();
+
+                myConnection_201 = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("azure");
+
+                // int i = 0;
+
+
+
+                foreach (DataRow dr in rows)
+                {
+
+
+                    storeno = dr["storeno"].ToString();
+                    sdate = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(dr["sdate"].ToString()));
+                    m_code = dr["m_code"].ToString();
+                    product_code = dr["product_code"].ToString();
+                    storeSubject = dr["storeSubject"].ToString();
+                    ppmidx = dr["ppmidx"].ToString();
+                    subject = dr["subject"].ToString();
+                    reg_gb = dr["reg_gb"].ToString();
+                    group_yn = dr["group_yn"].ToString();
+                    group_cd = dr["group_cd"].ToString();
+                    group_nm = dr["group_nm"].ToString();
+                    scm_gb = dr["scm_gb"].ToString();
+
+                    stock_only_ab = dr["stock_only_ab"].ToString();
+                    scm_susik = dr["scm_susik"].ToString();
+                    amt_bundle = Convert.ToInt32(dr["amt_bundle"].ToString());
+                    pdbsubject = dr["pdbsubject"].ToString();
+                    pdbidx = Convert.ToInt32(dr["pdbidx"].ToString());
+
+                    pcgsubject = dr["pcgsubject"].ToString();
+
+                    pcgidx = Convert.ToInt32(dr["pcgidx"].ToString());
+
+                    pcmsubject = dr["pcmsubject"].ToString();
+                    pcmidx = Convert.ToInt32(dr["pcmidx"].ToString());
+                    group_susik = dr["group_susik"].ToString();
+
+                    amt_balju_pre = Convert.ToInt32(dr["amt_balju_pre"].ToString());
+                    amt_balju = Convert.ToInt32(dr["amt_balju"].ToString());
+
+                    amt_sale_d3 = Convert.ToInt32(dr["amt_sale_d3"].ToString());
+                    amt_sale_d2 = Convert.ToInt32(dr["amt_sale_d2"].ToString());
+                    amt_sale_d1 = Convert.ToInt32(dr["amt_sale_d1"].ToString());
+                    amt_sale_d = Convert.ToInt32(dr["amt_sale_d"].ToString());
+
+                    amt_pda_d3 = Convert.ToInt32(dr["amt_pda_d3"].ToString());
+                    amt_pda_d2 = Convert.ToInt32(dr["amt_pda_d2"].ToString());
+                    amt_pda_d1 = Convert.ToInt32(dr["amt_pda_d1"].ToString());
+
+                    amt_safe_d = Convert.ToInt32(dr["amt_safe_d"].ToString());
+                    amt_safe_max = Convert.ToInt32(dr["amt_safe_max"].ToString());
+
+                    amt_magam = Convert.ToInt32(dr["amt_magam"].ToString());
+
+                    amt_input_d3 = Convert.ToInt32(dr["amt_input_d3"].ToString());
+                    amt_input_d2 = Convert.ToInt32(dr["amt_input_d2"].ToString());
+                    amt_input_d1 = Convert.ToInt32(dr["amt_input_d1"].ToString());
+
+                    amt_adjust1 = Convert.ToInt32(dr["amt_adjust1"].ToString());
+                    amt_adjust2 = Convert.ToInt32(dr["amt_adjust2"].ToString());
+                    amt_adjust3 = Convert.ToInt32(dr["amt_adjust3"].ToString());
+                    amt_adjust4 = Convert.ToInt32(dr["amt_adjust4"].ToString());
+                    amt_adjust5 = Convert.ToInt32(dr["amt_adjust5"].ToString());
+                    amt_adjust6 = Convert.ToInt32(dr["amt_adjust6"].ToString());
+                    amt_adjust7 = Convert.ToInt32(dr["amt_adjust7"].ToString());
+
+
+                    //queryString1 = "  IF NOT EXISTS (SELECT orderdate from scm_stock_preset with (nolock) where  orderdate = '" + sdate + "' and storeno = '" + storeno + "' and product_code = '" + product_code + "') "
+                    //                            + " BEGIN "
+                    //                            + "    insert into  scm_stock_preset (storeNo, orderdate, m_code,product_code,storeSubject,ppmidx,subject,reg_gb,group_yn,group_cd, "
+                    //                            + " group_nm,scm_gb,stock_only_ab,scm_susik,amt_bundle,pdbsubject,pdbidx,pcgsubject,pcgidx,pcmsubject,pcmidx,group_susik,"
+                    //                            + " amt_balju_pre,amt_balju,amt_sale_d3,amt_sale_d2,amt_sale_d1,amt_sale_d,amt_pda_d3,amt_pda_d2,amt_pda_d1,amt_safe_d,"
+                    //                            + " amt_safe_max,amt_magam,amt_input_d3,amt_input_d2,amt_input_d1,amt_adjust1,amt_adjust2,amt_adjust3,amt_adjust4,amt_adjust5,amt_adjust6,amt_adjust7) values"
+                    //                            + "   ( '" + storeno + "' , '" + sdate + "' , '" + m_code + "', '" + product_code + "','" + storeSubject + "','" + ppmidx + "','" + subject + "','" + reg_gb + "','" + group_yn + "','" + group_cd + "', "
+                    //                            + " '" + group_nm + "','" + scm_gb + "','" + stock_only_ab + "','" + scm_susik + "','" + amt_bundle + "','" + pdbsubject + "','" + pdbidx + "','" + pcgsubject + "','" + pcgidx + "','" + pcmsubject + "','" + pcmidx + "','" + group_susik + "',"
+                    //                           + " '" + amt_balju_pre + "', '" + amt_balju + "', '" + amt_sale_d3 + "', '" + amt_sale_d2 + "', '" + amt_sale_d1 + "', '" + amt_sale_d + "', '" + amt_pda_d3 + "', '" + amt_pda_d2 + "', '" + amt_pda_d1 + "', '" + amt_safe_d + "',"
+                    //                            + "'" + amt_safe_max + "', '" + amt_magam + "', '" + amt_input_d3 + "', '" + amt_input_d2 + "', '" + amt_input_d1 + "', '" + amt_adjust1 + "', '" + amt_adjust2 + "', '" + amt_adjust3 + "', '" + amt_adjust4 + "', '" + amt_adjust5 + "',  '" + amt_adjust6 + "', '" + amt_adjust7 + "'"
+                    //                           + ") ;"
+                    //                            + " end "
+                    //                            + " else "
+                    //                            + " BEGIN "
+                    //                            + "   UPDATE scm_stock_preset SET "
+                    //                            + "   amt_balju_pre = '" + amt_balju_pre + "'"
+                    //                            + "   , amt_balju ='" + amt_balju + "'"
+                    //                            + "   , amt_sale_d3 ='" + amt_sale_d3 + "'"
+                    //                            + "   , amt_sale_d2 ='" + amt_sale_d2 + "'"
+                    //                            + "   , amt_sale_d1 ='" + amt_sale_d1 + "'"
+                    //                            + "   , amt_sale_d ='" + amt_sale_d + "'"
+                    //                            + "   , amt_pda_d3 ='" + amt_pda_d3 + "'"
+                    //                            + "   , amt_pda_d2 ='" + amt_pda_d2 + "'"
+                    //                            + "   , amt_pda_d1 ='" + amt_pda_d1 + "'"
+                    //                            + "   , amt_safe_d ='" + amt_safe_d + "'"
+                    //                            + "   , amt_safe_max ='" + amt_safe_max + "'"
+                    //                            + "   , amt_magam ='" + amt_magam + "'"
+                    //                            + "   , amt_input_d3 ='" + amt_input_d3 + "'"
+                    //                            + "   , amt_input_d2 ='" + amt_input_d2 + "'"
+                    //                            + "   , amt_input_d1 ='" + amt_input_d1 + "'"
+                    //                            + "   , amt_adjust1 ='" + amt_adjust1 + "'"
+                    //                            + "   , amt_adjust2 ='" + amt_adjust2 + "'"
+                    //                            + "   , amt_adjust3 ='" + amt_adjust3 + "'"
+                    //                            + "   , amt_adjust4 ='" + amt_adjust4 + "'"
+                    //                            + "   , amt_adjust5 ='" + amt_adjust5 + "'"
+                    //                            + "   , amt_adjust6 ='" + amt_adjust6 + "'"
+                    //                            + "   , amt_adjust7 ='" + amt_adjust7 + "'"
+                    //                            + "   WHERE orderdate = '" + sdate + "' and storeno = '" + storeno + "'  AND   product_code = '" + product_code + "'"
+                    //                            + " end ";
+
+                    queryString1 = "    insert into  scm_stock_preset (storeNo, orderdate, m_code,product_code,storeSubject,ppmidx,subject,reg_gb,group_yn,group_cd, "
+                                               + " group_nm,scm_gb,stock_only_ab,scm_susik,amt_bundle,pdbsubject,pdbidx,pcgsubject,pcgidx,pcmsubject,pcmidx,group_susik,"
+                                               + " amt_balju_pre,amt_balju,amt_sale_d3,amt_sale_d2,amt_sale_d1,amt_sale_d,amt_pda_d3,amt_pda_d2,amt_pda_d1,amt_safe_d,"
+                                               + " amt_safe_max,amt_magam,amt_input_d3,amt_input_d2,amt_input_d1,amt_adjust1,amt_adjust2,amt_adjust3,amt_adjust4,amt_adjust5,amt_adjust6,amt_adjust7) values"
+                                               + "   ( '" + storeno + "' , '" + sdate + "' , '" + m_code + "', '" + product_code + "','" + storeSubject + "','" + ppmidx + "','" + subject + "','" + reg_gb + "','" + group_yn + "','" + group_cd + "', "
+                                               + " '" + group_nm + "','" + scm_gb + "','" + stock_only_ab + "','" + scm_susik + "','" + amt_bundle + "','" + pdbsubject + "','" + pdbidx + "','" + pcgsubject + "','" + pcgidx + "','" + pcmsubject + "','" + pcmidx + "','" + group_susik + "',"
+                                              + " '" + amt_balju_pre + "', '" + amt_balju + "', '" + amt_sale_d3 + "', '" + amt_sale_d2 + "', '" + amt_sale_d1 + "', '" + amt_sale_d + "', '" + amt_pda_d3 + "', '" + amt_pda_d2 + "', '" + amt_pda_d1 + "', '" + amt_safe_d + "',"
+                                               + "'" + amt_safe_max + "', '" + amt_magam + "', '" + amt_input_d3 + "', '" + amt_input_d2 + "', '" + amt_input_d1 + "', '" + amt_adjust1 + "', '" + amt_adjust2 + "', '" + amt_adjust3 + "', '" + amt_adjust4 + "', '" + amt_adjust5 + "',  '" + amt_adjust6 + "', '" + amt_adjust7 + "'"
+                                              + ") ";
+
+                    //Log((String.Format("[in_stock] 쿼리[{0}] : ", queryString1)));
+
+                    SqlCommand command1 = new SqlCommand(queryString1, myConnection_201);
+                    command1.CommandText = queryString1;
+                    command1.ExecuteNonQuery();
+
+                    // progressBar1.Value = (int)(i / Convert.ToDouble(rows) * 100);
+
+                    // i = i + 1;
+
+                }
+                frm1.sendSms("NEWPOS_SCM 자료 생성 완료(" + String.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now.AddDays(0).ToString()) + ")");
+                frm1.Log("NEWPOS_SCM 자료 생성 완료");
+                myConnection_201.Dispose();
+                myConnection_201.Close();
+            }
+            catch (Exception ex)
+            {
+                frm1.Log("[11)]:" + ex.Message);
+                frm1.Log("자료 생성 쿼리:" + queryString1);
+
+            }
+            
+        }
+
+
+        private void fn_get_stock_preset_jungga(string orderdate1, string orderdate2, Form1 frm1)
+        {
+            myConnection = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("213");
+            string queryString1 = "";
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            frm1.sendSms("NEWPOS_SCM 정가 판매 생성 시작");
+
+
+            string queryString = "select  right(storeno,4) as storeno, ppmidx, orderdate as ckorderdate,( SUM(ISNULL(qty_total,0)) - SUM(ISNULL(qty_discount,0)) ) as jungga  "
+                             + " from pos_sale_A01_ppm_daily where orderdate >=  '" + orderdate1 + "' and orderdate <= '" + orderdate2 + "'  "
+                             + " group by storeno, ppmidx,orderdate  "
+                             + "HAVING ISNULL(CASE WHEN (COUNT(orderdate)) <> 0 THEN ROUND(SUM(qty_total)/COUNT(orderdate), 0) ELSE 0 END, 0) > 0" ;
+            //AND CONVERT(Varchar(10),a.regdate,120) = CONVERT(Varchar(10),getdate(),120)";
+
+            adapter.SelectCommand = new SqlCommand(queryString, myConnection);
+            adapter.SelectCommand.CommandTimeout = 120;
+            SqlCommand command = new SqlCommand(queryString, myConnection);
+
+
+            try
+            {
+
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                DataTable table = ds.Tables[0];
+                DataRowCollection rows = table.Rows;
+
+                string storeno = "";
+                string ppmidx = "";
+                string ckorderdate = "";
+                int jungga = 0;
+               
+                myConnection.Dispose();
+                myConnection.Close();
+                myConnection_201 = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("azure");
+
+ 
+                foreach (DataRow dr in rows)
+                {
+                     storeno = dr["storeno"].ToString();
+                    ckorderdate = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(dr["ckorderdate"].ToString()));
+                    ppmidx = dr["ppmidx"].ToString();
+                    jungga = Convert.ToInt32(dr["jungga"].ToString());
+
+
+                    //D-6, D-3 실행하므로 기존에 있는 물품인 경우, 설정값 Update 없는 물품인 경우 Insert
+                    queryString1 = "   UPDATE scm_stock_preset SET "
+                                                + "   amt_jungga = '" + jungga + "'"
+                                                + "   WHERE orderdate = '" + ckorderdate + "' and storeno = '" + storeno + "'  AND   ppmidx = '" + ppmidx + "'";
+                                          
+                    //Log((String.Format("[in_stock] 쿼리[{0}] : ", queryString1)));
+
+                    SqlCommand command1 = new SqlCommand(queryString1, myConnection_201);
+                    command1.CommandText = queryString1;
+                    command1.ExecuteNonQuery();
+
+                }
+                frm1.sendSms("NEWPOS_SCM 정가 판매  생성 완료");
+                myConnection_201.Dispose();
+                myConnection_201.Close();
+            }
+            catch (Exception ex)
+            {
+                frm1.Log("[11)]:" + ex.Message);
+                frm1.Log("정가 판매쿼리:" + queryString1);
+
+            }
+
+
+        }
+
+
+        private void fn_get_stock_preset_panmae(string orderdate1, string orderdate2, Form1 frm1)
+        {
+
+            myConnection = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("213");
+            string queryString1 = "";
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            frm1.sendSms("NEWPOS_SCM  판매예측 생성 시작");
+
+            string queryString = "select  storeno, ppmidx, sdate, ( SUM(ISNULL(amt_sale,0)) ) as panmae   "
+                             + " from webdb_se.dbo.preset_sale_data_2019 with (nolock) where sdate >=  '" + orderdate1 + "' and sdate <= '" + orderdate2 + "'  "
+                             + " group by storeno, ppmidx , sdate  "
+                             + " having SUM(ISNULL(amt_sale,0)) <> 0  ";
+
+
+            //AND CONVERT(Varchar(10),a.regdate,120) = CONVERT(Varchar(10),getdate(),120)";
+
+            adapter.SelectCommand = new SqlCommand(queryString, myConnection);
+            adapter.SelectCommand.CommandTimeout = 120;
+            SqlCommand command = new SqlCommand(queryString, myConnection);
+
+
+            try
+            {
+
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                DataTable table = ds.Tables[0];
+                DataRowCollection rows = table.Rows;
+
+                string storeno = "";
+                string ppmidx = "";
+                string cksdate = "";
+                int panmae = 0;
+
+                myConnection.Dispose();
+                myConnection.Close();
+                myConnection_201 = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("azure");
+
+
+                foreach (DataRow dr in rows)
+                {
+                    storeno = dr["storeno"].ToString();
+                    cksdate = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(dr["sdate"].ToString()));
+                    ppmidx = dr["ppmidx"].ToString();
+                    panmae = Convert.ToInt32(dr["panmae"].ToString());
+
+
+                    //D-6, D-3 실행하므로 기존에 있는 물품인 경우, 설정값 Update 없는 물품인 경우 Insert
+                    queryString1 = "   UPDATE scm_stock_preset SET "
+                                                + "   amt_panmae = '" + panmae + "'"
+                                                + "   WHERE orderdate = '" + cksdate + "' and storeno = '" + storeno + "'  AND  ppmidx = '" + ppmidx + "'";
+                     
+                    //Log((String.Format("[in_stock] 쿼리[{0}] : ", queryString1)));
+
+                    SqlCommand command1 = new SqlCommand(queryString1, myConnection_201);
+                    command1.CommandText = queryString1;
+                    command1.ExecuteNonQuery();
+
+                }
+                frm1.sendSms("NEWPOS_SCM 판매예측  생성 완료");
+                myConnection_201.Dispose();
+                myConnection_201.Close();
+            }
+            catch (Exception ex)
+            {
+                frm1.Log("[11)]:" + ex.Message);
+                frm1.Log("판매예측쿼리:" + queryString1);
+
+            }
+
+
+        }
+
+        private void fn_get_stock_preset_stock(string orderdate1, string orderdate2, Form1 frm1)
+        {
+
+            myConnection = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("213");
+            string queryString1 = "";
+            string ckYYYYMM = "";
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            ckYYYYMM = String.Format("{0:yyyyMM}", Convert.ToDateTime(orderdate1));
+
+            frm1.sendSms("NEWPOS_SCM  입고량 생성 시작");
+
+            //string queryString = "select  orderdate, storeno, ppmidx,  SUM(ISNULL(amt_pre,0)) as amt_pre ,  SUM(ISNULL(amt_input,0)) as amt_input ,(case when (amt_result <= 0) THEN 1 ELSE 0 END) as amt_result    "
+            //                   + " from pos_store_stock_"+ ckYYYYMM+"  with( nolock )where orderdate >=  '" + orderdate1 + "' and orderdate <= '" + orderdate2 + "'   and storeno <> '' "
+            //                 // + " from pos_store_stock  with( nolock )where orderdate >=  '" + orderdate1 + "' and orderdate <= '" + orderdate2 + "'   and storeno <> '' "
+            //                 + " group by storeno, ppmidx , orderdate,amt_result  ";
+
+            string queryString = "select  a.orderdate, a.storeno, a.ppmidx,  SUM(ISNULL(a.amt_pre,0)) as amt_pre ,  SUM(ISNULL(a.amt_input,0)) as amt_input ,(case when (sum(a.amt_result) <= 0) THEN 1 ELSE 0 END) as amt_result       "
+                             + " from pos_store_stock_" + ckYYYYMM + "  as a with( nolock )  + "
+                             + " right join  webdb_se.dbo.stock_preset4_2019 as b with( nolock ) on a.orderdate = b.sdate and right(a.storeno,4) = b.storeno and a.ppmidx = b.ppmidx  and vc = '1' "
+                             + "where a.orderdate >=  '" + orderdate1 + "' and a.orderdate <= '" + orderdate2 + "'   and storeno <> '' "
+                           // + " from pos_store_stock  with( nolock )where orderdate >=  '" + orderdate1 + "' and orderdate <= '" + orderdate2 + "'   and storeno <> '' "
+                           + " group by storeno, ppmidx , orderdate  ";
+
+
+
+            //AND CONVERT(Varchar(10),a.regdate,120) = CONVERT(Varchar(10),getdate(),120)";
+
+            adapter.SelectCommand = new SqlCommand(queryString, myConnection);
+            adapter.SelectCommand.CommandTimeout = 120;
+            SqlCommand command = new SqlCommand(queryString, myConnection);
+
+
+            try
+            {
+
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                DataTable table = ds.Tables[0];
+                DataRowCollection rows = table.Rows;
+
+                string storeno = "";
+                string ppmidx = "";
+                string ckorderdate = "";
+                int amt_input = 0;
+                int amt_pre = 0;
+                int amt_result = 0;
+
+                myConnection.Dispose();
+                myConnection.Close();
+                myConnection_201 = DbConnection.GetRemoteDataInstance().getRemoteDbConnection("azure");
+
+                frm1.sendSms("NEWPOS_SCM 입고량  1차 생성 완료");
+
+
+                foreach (DataRow dr in rows)
+                {
+                    storeno = dr["storeno"].ToString();
+                    ckorderdate = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(dr["orderdate"].ToString()));
+                    ppmidx = dr["ppmidx"].ToString();
+                    amt_input = Convert.ToInt32(dr["amt_input"].ToString());
+                    amt_pre = Convert.ToInt32(dr["amt_pre"].ToString());
+                    amt_result = Convert.ToInt32(dr["amt_result"].ToString());
+
+                    
+                    queryString1 = "   UPDATE scm_stock_preset SET "
+                                                + "   amt_input = '" + amt_input + "'"
+                                                + "   ,amt_pre = '" + amt_pre + "'"
+                                                + "  ,amt_soldout = '" + amt_result + "'"
+                                                + "   WHERE orderdate = '" + ckorderdate + "' and storeno = '" + storeno + "'  AND  ppmidx = '" + ppmidx + "'";
+                
+                    //Log((String.Format("[in_stock] 쿼리[{0}] : ", queryString1)));
+
+                    SqlCommand command1 = new SqlCommand(queryString1, myConnection_201);
+                    command1.CommandText = queryString1;
+                    command1.ExecuteNonQuery();
+
+                }
+                frm1.sendSms("NEWPOS_SCM 입고량  생성 완료");
+                myConnection_201.Dispose();
+                myConnection_201.Close();
+            }
+            catch (Exception ex)
+            {
+                frm1.Log("[11)]:" + ex.Message);
+                frm1.Log("입고량 쿼리:" + queryString1);
+
+            }
+
+
+        }
+
+    }
+}

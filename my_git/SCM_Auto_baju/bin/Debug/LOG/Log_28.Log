@@ -1,0 +1,18 @@
+10:12:24 : NEWPOS_SCM 정가 판매  생성 시작
+10:42:08 : [정가 판매]:실행 제한 시간을 초과했습니다. 작업이 완료되기 전에 실행 제한 시간이 지났거나 서버가 응답하지 않습니다.
+10:42:08 : 정가 판매쿼리:   UPDATE scm_stock_preset SET    amt_jungga = '1'   WHERE orderdate = '2019-08-20' and storeno = '6112'  AND   ppmidx = '24736'
+10:42:09 : NEWPOS_SCM 판매예측  생성 시작
+10:42:21 : NEWPOS_SCM 판매예측  생성 완료
+10:42:21 : NEWPOS_SCM 입고량  생성 시작
+12:32:03 : NEWPOS_SCM 입고량  생성 완료
+13:14:27 : NEWPOS_SCM 정가 판매  생성 시작
+13:41:10 : NEWPOS_SCM 정가 판매 생성 완료
+13:41:10 : NEWPOS_SCM 판매예측  생성 시작
+13:41:10 : NEWPOS_SCM 판매예측  생성 완료
+13:41:10 : NEWPOS_SCM 입고량  생성 시작
+13:49:50 : NEWPOS_SCM 정가 판매  생성 시작
+14:36:25 : NEWPOS_SCM 정가 판매 생성 완료
+14:36:25 : NEWPOS_SCM 판매예측  생성 시작
+15:30:36 : NEWPOS_SCM 판매예측  생성 완료
+15:30:36 : NEWPOS_SCM 입고량  생성 시작
+18:49:10 : NEWPOS_SCM 입고량  생성 완료

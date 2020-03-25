@@ -1,0 +1,21 @@
+10:20:14 : [MySql_124]:Closed
+10:20:29 : MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: SCM_Auto_baju.DbConnection_My.MygetRemoteDbConnection(String str) 파일 D:\SCM_V2_프로그램\SCM_Auto_baju\DbConnection_My.cs:줄 37
+10:20:29 : [MySql_164]:Closed
+10:20:44 : MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: SCM_Auto_baju.DbConnection_My.MygetRemoteDbConnection(String str) 파일 D:\SCM_V2_프로그램\SCM_Auto_baju\DbConnection_My.cs:줄 37
+10:20:44 : [MySql_18]:Closed

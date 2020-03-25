@@ -1,0 +1,348 @@
+04:41:05 : NEWPOS_SCM 입고량  생성 완료
+07:18:34 : [MsSql]:Open
+07:18:34 : NEWPOS_SCM 정가 판매  생성 시작
+07:18:54 : [MsSql]:Open
+09:10:27 : NEWPOS_SCM 정가 판매 생성 완료
+09:10:27 : [MsSql]:Open
+09:10:27 : NEWPOS_SCM 판매예측  생성 시작
+09:10:33 : [MsSql]:Open
+11:17:51 : NEWPOS_SCM 판매예측  생성 완료
+11:17:51 : [MsSql]:Open
+11:17:51 : NEWPOS_SCM 입고량  생성 시작
+11:18:18 : [MsSql]:Open
+11:33:53 : [MsSql]:Open
+11:33:53 : PPM 정가판매 데이터 생성 시작
+11:33:59 : ppm_daily 박스 제외 쿼리 1(fn_get_sale_ppm_daily)]:PRIMARY KEY 제약 조건 'PK_preset_sale_ppm_daily'을(를) 위반했습니다. 개체 'dbo.preset_sale_ppm_daily'에 중복 키를 삽입할 수 없습니다. 중복 키 값은 (10802, 6136, 2019-09-08)입니다.
+문이 종료되었습니다.
+11:33:59 : 박스제외쿼리:  INSERT INTO preset_sale_ppm_daily  (orderdate, storeno, ppmidx, qty_jungga, qty_total, qty_discount)   SELECT a.orderdate,  right(a.storeno,4) as storeno, a.ppmidx  , SUM(CASE WHEN a.vc_mainvoid='0' THEN a.qty ELSE 0 END)  - SUM(CASE WHEN a.vc_mainvoid='0' and (a.price_discount<>0 OR b.membergrade='13')THEN a.qty ELSE 0 END)  as qty_jungga  , SUM(CASE WHEN a.vc_mainvoid='0' THEN a.qty ELSE 0 END) as qty_total  , SUM(CASE WHEN a.vc_mainvoid='0' and (a.price_discount<>0 OR b.membergrade='13') THEN a.qty ELSE 0 END) as qty_discount   FROM pos_sale_orderNo_detail_201909 a WITH (NOLOCK)  LEFT JOIN pos_member_sy b WITH (NOLOCK) ON a.memidx=b.memidx  LEFT JOIN pos_db_membergrade_sub c WITH (NOLOCK) ON c.gradeNo2=b.memberGrade2 and c.memo='폐기자가'  LEFT JOIN pos_product_master_box as d WITH (NOLOCK) on a.ppmidx = d.ppmidx_box and d.vc ='1'     WHERE  a.orderDate >= '2019-09-08'  and   a.orderDate <=  '2019-09-08'     AND a.ppmidx in (  select ppmidx from pos_sale_A01_ppm_daily  as a with(nolock)   left join pos_product_master as b with(nolock)  on a.ppmidx = b.idx  where   (a.orderdate >= '2019-09-08'  and a.orderdate <= '2019-09-08' ) and  b.pdbidx not in ('3','4','5','6','7','8','9','10','11','12','13','14','15','16','17') and   b.pcmidx in (select idx from  pos_category_master where idx not in ('1','4','15','18','23','62','77','83','84','85','86','102','107','106','108','109','155','103','129','130','144','161','164')  and pcgidx not in('32','33') ) group by ppmidx  )  and ppmidx_box is null  GROUP BY  a.orderdate,a.storeno,a.ppmidx  having SUM(CASE WHEN a.vc_mainvoid='0' THEN a.qty ELSE 0 END)  - SUM(CASE WHEN a.vc_mainvoid='0' and (a.price_discount<>0 OR b.membergrade='13')THEN a.qty ELSE 0 END)  > 0 
+11:34:02 : PPM 정가판매 데이터  생성 완료
+11:34:02 : [MsSql 정가판매량 ]:Closed
+11:36:35 : [MsSql]:Open
+11:36:35 : NEWPOS_SCM 기준데이터 생성 시작
+11:36:39 : NEWPOS_SCM 자료 생성 개수(842798)
+11:36:39 : [MsSql]:Open
+11:36:40 : [MsSql]:Open
+12:17:26 : [MsSql]:Open
+12:17:26 : [자료 생성)]:'panmae' 열은  테이블에 속하지 않습니다.
+12:17:26 : 자료 생성 쿼리:
+12:17:26 : [MsSql]:Open
+12:53:25 : [MsSql]:Open
+12:53:25 : [자료 생성)]:'panmae' 열은  테이블에 속하지 않습니다.
+12:53:25 : 자료 생성 쿼리:
+12:53:25 : [MsSql]:Open
+12:55:01 : [MsSql]:Open
+12:55:01 : [자료 생성)]:'panmae' 열은  테이블에 속하지 않습니다.
+12:55:01 : 자료 생성 쿼리:
+12:55:01 : [MsSql]:Open
+12:56:32 : [MsSql]:Open
+12:56:32 : [자료 생성)]:'panmae' 열은  테이블에 속하지 않습니다.
+12:56:32 : 자료 생성 쿼리:
+12:56:32 : [MsSql]:Open
+13:01:50 : [MsSql]:Open
+13:01:50 : NEWPOS_SCM 기준데이터 생성 시작
+13:01:53 : NEWPOS_SCM 자료 생성 개수(842798)
+13:01:54 : [MsSql]:Open
+13:01:54 : [MsSql]:Open
+13:36:34 : [MsSql]:Open
+13:36:45 : NEWPOS_SCM 자료 생성 완료(1/17)
+13:36:45 : [MsSql]:Open
+13:36:45 : [MsSql]:Open
+14:13:51 : [MsSql]:Open
+14:14:05 : NEWPOS_SCM 자료 생성 완료(2/17)
+14:14:05 : [MsSql]:Open
+14:14:05 : [MsSql]:Open
+14:16:05 : [MsSql]:Open
+14:16:23 : NEWPOS_SCM 자료 생성 완료(3/17)
+14:16:23 : [MsSql]:Open
+14:16:23 : [MsSql]:Open
+14:18:01 : [MsSql]:Open
+14:18:14 : NEWPOS_SCM 자료 생성 완료(4/17)
+14:18:14 : [MsSql]:Open
+14:18:14 : [MsSql]:Open
+14:20:04 : [MsSql]:Open
+14:20:15 : NEWPOS_SCM 자료 생성 완료(5/17)
+14:20:15 : [MsSql]:Open
+14:20:15 : [MsSql]:Open
+14:22:45 : [MsSql]:Open
+14:22:59 : NEWPOS_SCM 자료 생성 완료(6/17)
+14:22:59 : [MsSql]:Open
+14:22:59 : [MsSql]:Open
+14:24:39 : [MsSql]:Open
+14:24:49 : NEWPOS_SCM 자료 생성 완료(7/17)
+14:24:49 : [MsSql]:Open
+14:24:49 : [MsSql]:Open
+14:26:55 : [MsSql]:Open
+14:27:05 : NEWPOS_SCM 자료 생성 완료(8/17)
+14:27:05 : [MsSql]:Open
+14:27:05 : [MsSql]:Open
+14:28:49 : [MsSql]:Open
+14:29:00 : NEWPOS_SCM 자료 생성 완료(9/17)
+14:29:00 : [MsSql]:Open
+14:29:00 : [MsSql]:Open
+14:30:45 : [MsSql]:Open
+14:30:55 : NEWPOS_SCM 자료 생성 완료(10/17)
+14:30:55 : [MsSql]:Open
+14:30:55 : [MsSql]:Open
+14:32:31 : [MsSql]:Open
+14:32:42 : NEWPOS_SCM 자료 생성 완료(11/17)
+14:32:42 : [MsSql]:Open
+14:32:42 : [MsSql]:Open
+14:34:26 : [MsSql]:Open
+14:34:36 : NEWPOS_SCM 자료 생성 완료(12/17)
+14:34:36 : [MsSql]:Open
+14:34:36 : [MsSql]:Open
+14:36:17 : [MsSql]:Open
+14:36:27 : NEWPOS_SCM 자료 생성 완료(13/17)
+14:36:27 : [MsSql]:Open
+14:36:27 : [MsSql]:Open
+14:38:20 : [MsSql]:Open
+14:38:31 : NEWPOS_SCM 자료 생성 완료(14/17)
+14:38:31 : [MsSql]:Open
+14:38:31 : [MsSql]:Open
+14:40:14 : [MsSql]:Open
+14:40:24 : NEWPOS_SCM 자료 생성 완료(15/17)
+14:40:24 : [MsSql]:Open
+14:40:24 : [MsSql]:Open
+14:42:06 : [MsSql]:Open
+14:42:16 : NEWPOS_SCM 자료 생성 완료(16/17)
+14:42:16 : [MsSql]:Open
+14:42:16 : [MsSql]:Open
+14:44:07 : [MsSql]:Open
+14:44:17 : NEWPOS_SCM 자료 생성 완료(17/17)
+14:44:18 : NEWPOS_SCM 자료 생성 완료(18/17)
+14:44:18 : 날짜2019-09-08~2019-09-08
+15:02:14 : [MsSql]:Open
+15:02:14 : NEWPOS_SCM 기준데이터 생성 시작
+15:02:24 : NEWPOS_SCM 자료 생성 개수(852450)
+15:02:24 : [MsSql]:Open
+15:02:24 : [MsSql]:Open
+15:12:57 : [MsSql]:Open
+15:12:57 : NEWPOS_SCM 기준데이터 생성 시작
+15:13:05 : NEWPOS_SCM 자료 생성 개수(852450)
+15:13:06 : [MsSql]:Open
+15:13:06 : [MsSql]:Open
+15:49:09 : [MsSql]:Open
+15:49:20 : NEWPOS_SCM 자료 생성 완료(1/18)
+15:49:20 : [MsSql]:Open
+15:49:20 : [MsSql]:Open
+16:30:55 : [MsSql]:Open
+16:31:06 : NEWPOS_SCM 자료 생성 완료(2/18)
+16:31:06 : [MsSql]:Open
+16:31:06 : [MsSql]:Open
+16:32:46 : [MsSql]:Open
+16:32:57 : NEWPOS_SCM 자료 생성 완료(3/18)
+16:32:57 : [MsSql]:Open
+16:32:57 : [MsSql]:Open
+16:34:43 : [MsSql]:Open
+16:34:54 : NEWPOS_SCM 자료 생성 완료(4/18)
+16:34:54 : [MsSql]:Open
+16:34:54 : [MsSql]:Open
+16:36:28 : [MsSql]:Open
+16:36:38 : NEWPOS_SCM 자료 생성 완료(5/18)
+16:36:38 : [MsSql]:Open
+16:36:38 : [MsSql]:Open
+16:38:31 : [MsSql]:Open
+16:38:42 : NEWPOS_SCM 자료 생성 완료(6/18)
+16:38:42 : [MsSql]:Open
+16:38:42 : [MsSql]:Open
+16:40:29 : [MsSql]:Open
+16:40:39 : NEWPOS_SCM 자료 생성 완료(7/18)
+16:40:39 : [MsSql]:Open
+16:40:39 : [MsSql]:Open
+16:42:18 : [MsSql]:Open
+16:42:29 : NEWPOS_SCM 자료 생성 완료(8/18)
+16:42:29 : [MsSql]:Open
+16:42:29 : [MsSql]:Open
+16:44:08 : [MsSql]:Open
+16:44:18 : NEWPOS_SCM 자료 생성 완료(9/18)
+16:44:18 : [MsSql]:Open
+16:44:18 : [MsSql]:Open
+16:46:07 : [MsSql]:Open
+16:46:17 : NEWPOS_SCM 자료 생성 완료(10/18)
+16:46:17 : [MsSql]:Open
+16:46:17 : [MsSql]:Open
+16:47:57 : [MsSql]:Open
+16:48:07 : NEWPOS_SCM 자료 생성 완료(11/18)
+16:48:07 : [MsSql]:Open
+16:48:07 : [MsSql]:Open
+16:50:11 : [MsSql]:Open
+16:50:22 : NEWPOS_SCM 자료 생성 완료(12/18)
+16:50:22 : [MsSql]:Open
+16:50:22 : [MsSql]:Open
+16:52:09 : [MsSql]:Open
+16:52:19 : NEWPOS_SCM 자료 생성 완료(13/18)
+16:52:19 : [MsSql]:Open
+16:52:19 : [MsSql]:Open
+16:54:10 : [MsSql]:Open
+16:54:22 : NEWPOS_SCM 자료 생성 완료(14/18)
+16:54:22 : [MsSql]:Open
+16:54:22 : [MsSql]:Open
+16:56:15 : [MsSql]:Open
+16:56:26 : NEWPOS_SCM 자료 생성 완료(15/18)
+16:56:26 : [MsSql]:Open
+16:56:26 : [MsSql]:Open
+16:58:19 : [MsSql]:Open
+16:58:31 : NEWPOS_SCM 자료 생성 완료(16/18)
+16:58:31 : [MsSql]:Open
+16:58:31 : [MsSql]:Open
+17:00:18 : [MsSql]:Open
+17:00:29 : NEWPOS_SCM 자료 생성 완료(17/18)
+17:00:29 : [MsSql]:Open
+17:00:29 : [MsSql]:Open
+17:02:07 : [MsSql]:Open
+17:02:07 : NEWPOS_SCM 자료 생성 완료(18/18)
+17:02:07 : NEWPOS_SCM 자료 생성 완료(19/18)
+17:02:07 : 날짜2019-09-09~2019-09-09
+17:14:17 : [MsSql]:Open
+17:14:17 : NEWPOS_SCM 판매예측  생성 시작
+17:14:20 : [MsSql]:Open
+21:41:20 : NEWPOS_SCM 판매예측  생성 완료
+23:01:41 : [MsSql]:Open
+23:01:41 : NEWPOS_SCM 기준데이터 생성 시작
+23:02:06 : NEWPOS_SCM 자료 생성 개수(8448082)
+23:02:06 : [MsSql]:Open
+23:02:06 : [MsSql]:Open
+23:03:30 : [MsSql]:Open
+23:03:39 : NEWPOS_SCM 자료 생성 완료(1/169)
+23:03:39 : [MsSql]:Open
+23:03:39 : [MsSql]:Open
+23:04:57 : [MsSql]:Open
+23:05:07 : NEWPOS_SCM 자료 생성 완료(2/169)
+23:05:07 : [MsSql]:Open
+23:05:07 : [MsSql]:Open
+23:06:20 : [MsSql]:Open
+23:06:30 : NEWPOS_SCM 자료 생성 완료(3/169)
+23:06:30 : [MsSql]:Open
+23:06:30 : [MsSql]:Open
+23:07:46 : [MsSql]:Open
+23:07:56 : NEWPOS_SCM 자료 생성 완료(4/169)
+23:07:56 : [MsSql]:Open
+23:07:56 : [MsSql]:Open
+23:09:14 : [MsSql]:Open
+23:09:24 : NEWPOS_SCM 자료 생성 완료(5/169)
+23:09:24 : [MsSql]:Open
+23:09:24 : [MsSql]:Open
+23:10:50 : [MsSql]:Open
+23:10:59 : NEWPOS_SCM 자료 생성 완료(6/169)
+23:10:59 : [MsSql]:Open
+23:10:59 : [MsSql]:Open
+23:12:17 : [MsSql]:Open
+23:12:26 : NEWPOS_SCM 자료 생성 완료(7/169)
+23:12:26 : [MsSql]:Open
+23:12:26 : [MsSql]:Open
+23:13:45 : [MsSql]:Open
+23:13:55 : NEWPOS_SCM 자료 생성 완료(8/169)
+23:13:55 : [MsSql]:Open
+23:13:55 : [MsSql]:Open
+23:15:22 : [MsSql]:Open
+23:15:32 : NEWPOS_SCM 자료 생성 완료(9/169)
+23:15:32 : [MsSql]:Open
+23:15:32 : [MsSql]:Open
+23:17:03 : [MsSql]:Open
+23:17:12 : NEWPOS_SCM 자료 생성 완료(10/169)
+23:17:12 : [MsSql]:Open
+23:17:12 : [MsSql]:Open
+23:18:40 : [MsSql]:Open
+23:18:50 : NEWPOS_SCM 자료 생성 완료(11/169)
+23:18:50 : [MsSql]:Open
+23:18:50 : [MsSql]:Open
+23:20:14 : [MsSql]:Open
+23:20:24 : NEWPOS_SCM 자료 생성 완료(12/169)
+23:20:24 : [MsSql]:Open
+23:20:24 : [MsSql]:Open
+23:21:46 : [MsSql]:Open
+23:21:56 : NEWPOS_SCM 자료 생성 완료(13/169)
+23:21:56 : [MsSql]:Open
+23:21:56 : [MsSql]:Open
+23:23:24 : [MsSql]:Open
+23:23:35 : NEWPOS_SCM 자료 생성 완료(14/169)
+23:23:35 : [MsSql]:Open
+23:23:35 : [MsSql]:Open
+23:24:55 : [MsSql]:Open
+23:25:05 : NEWPOS_SCM 자료 생성 완료(15/169)
+23:25:05 : [MsSql]:Open
+23:25:05 : [MsSql]:Open
+23:26:30 : [MsSql]:Open
+23:26:40 : NEWPOS_SCM 자료 생성 완료(16/169)
+23:26:40 : [MsSql]:Open
+23:26:40 : [MsSql]:Open
+23:28:07 : [MsSql]:Open
+23:28:17 : NEWPOS_SCM 자료 생성 완료(17/169)
+23:28:17 : [MsSql]:Open
+23:28:17 : [MsSql]:Open
+23:29:43 : [MsSql]:Open
+23:29:53 : NEWPOS_SCM 자료 생성 완료(18/169)
+23:29:53 : [MsSql]:Open
+23:29:53 : [MsSql]:Open
+23:31:23 : [MsSql]:Open
+23:31:33 : NEWPOS_SCM 자료 생성 완료(19/169)
+23:31:33 : [MsSql]:Open
+23:31:33 : [MsSql]:Open
+23:33:02 : [MsSql]:Open
+23:33:12 : NEWPOS_SCM 자료 생성 완료(20/169)
+23:33:12 : [MsSql]:Open
+23:33:12 : [MsSql]:Open
+23:34:46 : [MsSql]:Open
+23:34:56 : NEWPOS_SCM 자료 생성 완료(21/169)
+23:34:56 : [MsSql]:Open
+23:34:56 : [MsSql]:Open
+23:36:18 : [MsSql]:Open
+23:36:29 : NEWPOS_SCM 자료 생성 완료(22/169)
+23:36:29 : [MsSql]:Open
+23:36:29 : [MsSql]:Open
+23:37:55 : [MsSql]:Open
+23:38:05 : NEWPOS_SCM 자료 생성 완료(23/169)
+23:38:05 : [MsSql]:Open
+23:38:05 : [MsSql]:Open
+23:39:33 : [MsSql]:Open
+23:39:43 : NEWPOS_SCM 자료 생성 완료(24/169)
+23:39:43 : [MsSql]:Open
+23:39:43 : [MsSql]:Open
+23:41:10 : [MsSql]:Open
+23:41:21 : NEWPOS_SCM 자료 생성 완료(25/169)
+23:41:21 : [MsSql]:Open
+23:41:21 : [MsSql]:Open
+23:42:55 : [MsSql]:Open
+23:43:06 : NEWPOS_SCM 자료 생성 완료(26/169)
+23:43:06 : [MsSql]:Open
+23:43:06 : [MsSql]:Open
+23:44:34 : [MsSql]:Open
+23:44:44 : NEWPOS_SCM 자료 생성 완료(27/169)
+23:44:44 : [MsSql]:Open
+23:44:44 : [MsSql]:Open
+23:46:08 : [MsSql]:Open
+23:46:18 : NEWPOS_SCM 자료 생성 완료(28/169)
+23:46:18 : [MsSql]:Open
+23:46:18 : [MsSql]:Open
+23:47:49 : [MsSql]:Open
+23:47:59 : NEWPOS_SCM 자료 생성 완료(29/169)
+23:47:59 : [MsSql]:Open
+23:47:59 : [MsSql]:Open
+23:49:29 : [MsSql]:Open
+23:49:39 : NEWPOS_SCM 자료 생성 완료(30/169)
+23:49:39 : [MsSql]:Open
+23:49:39 : [MsSql]:Open
+23:51:04 : [MsSql]:Open
+23:51:13 : NEWPOS_SCM 자료 생성 완료(31/169)
+23:51:13 : [MsSql]:Open
+23:51:13 : [MsSql]:Open
+23:52:42 : [MsSql]:Open
+23:52:52 : NEWPOS_SCM 자료 생성 완료(32/169)
+23:52:52 : [MsSql]:Open
+23:52:52 : [MsSql]:Open
+23:54:26 : [MsSql]:Open
+23:54:36 : NEWPOS_SCM 자료 생성 완료(33/169)
+23:54:36 : [MsSql]:Open
+23:54:36 : [MsSql]:Open
+23:56:12 : [MsSql]:Open
+23:56:22 : NEWPOS_SCM 자료 생성 완료(34/169)
+23:56:22 : [MsSql]:Open
+23:56:22 : [MsSql]:Open
+23:57:50 : [MsSql]:Open
+23:58:00 : NEWPOS_SCM 자료 생성 완료(35/169)
+23:58:00 : [MsSql]:Open
+23:58:00 : [MsSql]:Open
+23:59:27 : [MsSql]:Open
+23:59:38 : NEWPOS_SCM 자료 생성 완료(36/169)
+23:59:38 : [MsSql]:Open
+23:59:38 : [MsSql]:Open

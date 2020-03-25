@@ -1,0 +1,25 @@
+11:58:29 : [MsSql]:Open
+11:58:29 : NEWPOS_SCM 정가 판매  생성 시작
+11:58:56 : [MsSql]:Open
+12:16:59 : NEWPOS_SCM 정가 판매 생성 완료
+12:16:59 : [MsSql]:Open
+12:16:59 : NEWPOS_SCM 판매예측  생성 시작
+12:16:59 : [MsSql]:Open
+12:40:40 : NEWPOS_SCM 판매예측  생성 완료
+12:40:40 : [MsSql]:Open
+12:40:40 : NEWPOS_SCM 입고량  생성 시작
+12:40:45 : [MsSql]:Open
+14:04:04 : NEWPOS_SCM 입고량  생성 완료
+16:47:28 : [MsSql]:Open
+16:47:28 : NEWPOS_SCM 정가 판매  생성 시작
+16:48:08 : [MsSql]:Open
+16:48:08 : NEWPOS_SCM 정가 판매  생성 시작
+16:49:01 : [MsSql]:Open
+19:05:35 : NEWPOS_SCM 정가 판매 생성 완료
+19:05:35 : [MsSql]:Open
+19:05:35 : NEWPOS_SCM 판매예측  생성 시작
+19:05:35 : [MsSql]:Open
+19:05:38 : NEWPOS_SCM 판매예측  생성 완료
+19:05:38 : [MsSql]:Open
+19:05:38 : NEWPOS_SCM 입고량  생성 시작
+19:06:23 : [MsSql]:Open

@@ -1,0 +1,43 @@
+15:44:10 : [정가 판매 표준 편차 pos_store_stock]:여러 부분으로 구성된 식별자 "a.storeno"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.ppmidx"은(는) 바인딩할 수 없습니다.
+열 이름 'storeno'이(가) 불확실합니다.
+열 이름 'ppmidx'이(가) 불확실합니다.
+15:45:33 : [정가 판매 표준 편차 pos_store_stock]:여러 부분으로 구성된 식별자 "a.storeno"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.ppmidx"은(는) 바인딩할 수 없습니다.
+열 이름 'storeno'이(가) 불확실합니다.
+열 이름 'ppmidx'이(가) 불확실합니다.
+15:45:48 : [정가 판매 표준 편차 pos_store_stock]:여러 부분으로 구성된 식별자 "a.storeno"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.ppmidx"은(는) 바인딩할 수 없습니다.
+열 이름 'storeno'이(가) 불확실합니다.
+열 이름 'ppmidx'이(가) 불확실합니다.
+15:47:48 : [정가 판매 표준 편차 pos_store_stock]:여러 부분으로 구성된 식별자 "a.storeno"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.ppmidx"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.storeno"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.ppmidx"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.orderdate"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.orderdate"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.qty_jungga"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.qty_jungga"은(는) 바인딩할 수 없습니다.
+15:50:30 : [정가 판매 표준 편차 pos_store_stock]:sum_jungga
+15:52:24 : [정가 판매 표준 편차 pos_store_stock]:이 Command와 연결된 DataReader가 이미 열려 있습니다. 먼저 닫아야 합니다.
+15:54:19 : [정가 판매 표준 편차]:여러 부분으로 구성된 식별자 "a.storeno"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.ppmidx"은(는) 바인딩할 수 없습니다.
+열 이름 'storeno'이(가) 불확실합니다.
+열 이름 'ppmidx'이(가) 불확실합니다.
+열 이름 'storeno'이(가) 불확실합니다.
+열 이름 'ppmidx'이(가) 불확실합니다.
+여러 부분으로 구성된 식별자 "a.orderdate"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.storeno"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.ppmidx"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.qty_jungga"은(는) 바인딩할 수 없습니다.
+15:54:19 : 정가 표준 편차쿼리:  select  a.orderdate,  right(a.storeno,4) as storeno, a.ppmidx, sum(a.qty_jungga) as qty_jungga    from  preset_sale_ppm_daily_back3  with (nolock)  left join  preset_safe_stdevp_total as b with (nolock) on a.storeno = b.storeno and b.ppmidx = a.ppmidx    WHERE storeno = '3001'  AND   ppmidx = '389' and   (orderdate >=  '2018-01-01' and orderdate <=  '2018-12-31') and qty_jungga <= b.stdevp_2   group by orderdate, storeno, ppmidx  order by orderdate 
+15:56:08 : [정가 판매 표준 편차]:열 이름 'qty_jungga'이(가) 잘못되었습니다.
+15:56:08 : 정가 표준 편차쿼리:IF EXISTS (SELECT * FROM preset_safe_stdevp_total WITH (NOLOCK) WHERE storeno = '3001' AND ppmidx ='389' ) BEGIN      UPDATE preset_safe_stdevp_total      SET stdevp_3 = qty_jungga + 0.3 , regdate = getdate()       WHERE storeno = '3001' AND ppmidx ='389'  END ELSE BEGIN     insert into preset_safe_stdevp_total       (storeno,ppmidx,stdevp_3)       values ('3001' ,'389' ,0.3)  END
+17:30:49 : [2차 정가 판매 표준 편차 pos_store_stock]:여러 부분으로 구성된 식별자 "a.qty_jungga"은(는) 바인딩할 수 없습니다.
+17:30:49 : [2차 정가 판매 표준 편차 완료]
+17:32:38 : [2차 정가 판매 표준 편차 pos_store_stock]:여러 부분으로 구성된 식별자 "a.qty_jungga"은(는) 바인딩할 수 없습니다.
+17:32:38 : [2차 정가 판매 표준 편차 완료]
+17:46:02 : [2차 정가 판매 표준 편차 pos_store_stock]:여러 부분으로 구성된 식별자 "a.orderdate"은(는) 바인딩할 수 없습니다.
+여러 부분으로 구성된 식별자 "a.orderdate"은(는) 바인딩할 수 없습니다.
+17:46:02 : [2차 정가 판매 표준 편차 완료]
+19:13:18 : [2차 정가 판매 표준 편차 완료]

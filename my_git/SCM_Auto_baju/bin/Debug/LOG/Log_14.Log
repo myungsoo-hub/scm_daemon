@@ -1,0 +1,11 @@
+09:34:55 : PPM 정가판매 데이터 생성 시작
+09:45:21 : PPM 정가판매 데이터  생성 완료
+09:48:15 : PPM 정가판매 데이터 생성 시작
+09:55:31 : PPM 정가판매 데이터  생성 완료
+10:01:03 : PPM 정가판매 데이터 생성 시작
+10:06:21 : PPM 정가판매 데이터  생성 완료
+10:07:57 : PPM 정가판매 데이터 생성 시작
+10:12:20 : PPM 정가판매 데이터  생성 완료
+15:27:54 : [정가 판매 표준 편차]:ExecuteNonQuery을(를) 사용하려면 Connection이 열려 있고 사용 가능해야 합니다. 현재 연결은 닫힌 상태입니다.
+16:24:46 : Index #0 || Message: SQL Server에 연결을 설정하는 중에 네트워크 관련 또는 인스턴스 관련 오류가 발생했습니다. 서버를 찾을 수 없거나 액세스할 수 없습니다. 인스턴스 이름이 올바르고 SQL Server가 원격 연결을 허용하도록 구성되어 있는지 확인하십시오. (provider: Named Pipes Provider, error: 40 - SQL Server에 대한 연결을 열 수 없습니다.) || LineNumber: 0 || Source: .Net SqlClient Data Provider || Procedure: ;
+16:24:46 : [정가 판매 표준 편차 pos_store_stock]:SQL Server에 연결을 설정하는 중에 네트워크 관련 또는 인스턴스 관련 오류가 발생했습니다. 서버를 찾을 수 없거나 액세스할 수 없습니다. 인스턴스 이름이 올바르고 SQL Server가 원격 연결을 허용하도록 구성되어 있는지 확인하십시오. (provider: Named Pipes Provider, error: 40 - SQL Server에 대한 연결을 열 수 없습니다.)

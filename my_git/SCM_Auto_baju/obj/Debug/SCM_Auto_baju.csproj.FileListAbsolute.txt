@@ -1,0 +1,60 @@
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe.config
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.pdb
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\bin\Debug\MySql.Data.dll
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Form1.resources
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Properties.Resources.resources
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.GenerateResource.cache
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CoreCompileInputs.cache
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CopyComplete
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.exe
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.pdb
+D:\SCM_발주프로그램\SCM_Auto_baju\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csprojAssemblyReference.cache
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe.config
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.pdb
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\MySql.Data.dll
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csprojAssemblyReference.cache
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Form1.resources
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Properties.Resources.resources
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.GenerateResource.cache
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CoreCompileInputs.cache
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CopyComplete
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.exe
+C:\Users\kms82\Desktop\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.pdb
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe.config
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.pdb
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\bin\Debug\MySql.Data.dll
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Form1.resources
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Properties.Resources.resources
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.GenerateResource.cache
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CoreCompileInputs.cache
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CopyComplete
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.exe
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.pdb
+D:\SCM_발주프로그램\SCM_Auto_baju (2)\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csprojAssemblyReference.cache
+D:\SCM_V2_프로그램\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe.config
+D:\SCM_V2_프로그램\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe
+D:\SCM_V2_프로그램\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.pdb
+D:\SCM_V2_프로그램\SCM_Auto_baju\bin\Debug\MySql.Data.dll
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Form1.resources
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Properties.Resources.resources
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.GenerateResource.cache
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CoreCompileInputs.cache
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CopyComplete
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.exe
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.pdb
+D:\SCM_V2_프로그램\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csprojAssemblyReference.cache
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe.config
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.exe
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\bin\Debug\SCM_Auto_baju.pdb
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\bin\Debug\MySql.Data.dll
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csprojAssemblyReference.cache
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Form1.resources
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.Properties.Resources.resources
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.GenerateResource.cache
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CoreCompileInputs.cache
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.csproj.CopyComplete
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.exe
+D:\SCM_V2_프로그램_마리아\SCM_Auto_baju\obj\Debug\SCM_Auto_baju.pdb

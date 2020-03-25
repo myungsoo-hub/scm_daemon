@@ -1,0 +1,28 @@
+13:22:29 : [MsSql]:Open
+13:22:30 : [3-2차 요일별 판매 표준 편차 pos_product_date]:'orderdate' 근처의 구문이 잘못되었습니다.
+13:22:30 : [MsSql]:Open
+13:22:30 : [MsSql]:Open
+13:23:14 : 매월1일 ABC 누적 데이터 생성 완료
+13:23:14 : [MsSql]:Open
+13:23:17 : [2차 정가판매수량 특이값 제외 완료]
+13:23:17 : [MsSql]:Open
+13:24:30 : [MsSql]:Open
+13:24:31 : [3-2차 요일별 판매 표준 편차 pos_product_date]:'orderdate' 근처의 구문이 잘못되었습니다.
+13:24:31 : [MsSql]:Open
+13:24:35 : [MsSql]:Open
+13:25:40 : [MsSql]:Open
+13:25:41 : [3-2차 요일별 판매 표준 편차 pos_product_date]:'∞' 근처의 구문이 잘못되었습니다.
+13:25:41 : [MsSql]:Open
+13:25:41 : [MsSql]:Open
+13:26:05 : [MsSql]:Open
+13:27:42 : [MsSql]:Open
+13:28:00 : [MsSql]:Open
+13:28:46 : [MsSql]:Open
+13:29:56 : [MsSql]:Open
+19:27:26 : [3-2차 요일별 판매 표준 편차 완료]
+19:27:26 : [MsSql]:Open
+19:27:26 : [MsSql]:Open
+19:28:06 : 매월1일 ABC 누적 데이터 생성 완료
+19:28:06 : [MsSql]:Open
+19:28:11 : [2차 정가판매수량 특이값 제외 완료]
+19:28:11 : [MsSql]:Open

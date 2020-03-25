@@ -1,0 +1,15 @@
+09:22:25 : MySql.Data.MySqlClient.MySqlException (0x80004005): Unable to connect to any of the specified MySQL hosts.
+   위치: MySql.Data.MySqlClient.NativeDriver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Open()
+   위치: MySql.Data.MySqlClient.Driver.Create(MySqlConnectionStringBuilder settings)
+   위치: MySql.Data.MySqlClient.MySqlPool.GetPooledConnection()
+   위치: MySql.Data.MySqlClient.MySqlPool.TryToGetDriver()
+   위치: MySql.Data.MySqlClient.MySqlPool.GetConnection()
+   위치: MySql.Data.MySqlClient.MySqlConnection.Open()
+   위치: SCM_Auto_baju.DbConnection_My.MygetRemoteDbConnection(String str) 파일 D:\SCM_V2_프로그램\SCM_Auto_baju\DbConnection_My.cs:줄 37
+09:22:25 : [MsSql]:Open
+09:22:41 : [대상물품추출2_v3(fn_get_preset_data)]오류:Unable to connect to any of the specified MySQL hosts.
+09:22:41 : [MySql [대상물품] 데이터 추출 ]:Closed
+09:22:41 : [MsSql [대상물품] 데이터 추출 ]:Closed
+09:22:41 : [MsSql]:Open
+09:23:54 : [MsSql]:Open
