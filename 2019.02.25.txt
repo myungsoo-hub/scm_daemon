@@ -1,0 +1,23 @@
+
+select * from mst_table_gb
+select * from pos_sale_A01_discount 
+select substring(storeno,7,4),* from pos_store where storeno ='8000004011'
+select top 10  * from pos_sale_A01--부가세 ,출자금 제외
+select * from pos_erp_org where johap_code='A028'
+
+ pos_erp_org as f on a.store_ocode = f.o_code
+
+declare @prod varchar(2000)
+select @prod = ''
+select @prod = @prod + '[' + gb +'],'
+	from  ( select gb from mst_table_gb where tb_nm='pos_sale_orderno_detail_YYYYMM' and col_nm='event_cd' ) A
+select @prod = left(@prod,len(@prod)-1)
+select @prod
+ 
+
+ select e.o_name, b.storeno, b.storeSubject, c.count_total_cash, * 
+ from pos_sale_A01_discount as a
+ left join pos_store as b on a.store_cd = substring(b.storeno,7,4)
+ left join pos_sale_A01 as c on a.store_cd= substring(c.storeno,7,4) and a.orderdate = c.orderdate
+ left join pos_erp_org as e on b.store_ocode = e.o_code
+ where b.storeno ='' and a.orderDate =''
