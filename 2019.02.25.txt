@@ -1,5 +1,4 @@
-ㅁㄴㅇㄻㅁㄴㅇㄹ
-d
+3차테스트
 
 select * from mst_table_gb
 select * from pos_sale_A01_discount 
