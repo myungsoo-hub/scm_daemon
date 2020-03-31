@@ -1,12 +1,10 @@
-ddddd
-d
-d
+ã…ã„´ã…‡ã„»ã…ã„´ã…‡ã„¹
 d
 
 select * from mst_table_gb
 select * from pos_sale_A01_discount 
 select substring(storeno,7,4),* from pos_store where storeno ='8000004011'
-select top 10  * from pos_sale_A01--ºÎ°¡¼¼ ,ÃâÀÚ±İ Á¦¿Ü
+select top 10  * from pos_sale_A01--ë¶€ê°€ì„¸ ,ì¶œìê¸ˆ ì œì™¸
 select * from pos_erp_org where johap_code='A028'
 
  pos_erp_org as f on a.store_ocode = f.o_code
